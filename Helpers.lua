@@ -603,7 +603,7 @@ function TorteMe:UpdateDelveHUD(buffName, timeEnd)
 		else 
 			TorteMeUIDelveBonusTime:SetText("EXPIRED")
 			TorteMeUIDelveBonusTime:SetColor(255,0,0,255)
-			EVENT_MANAGER:UnRegisterForUpdate(TorteMe.name .. "_DelveTimer")
+			EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_DelveTimer")
 		end
 	end)
 end
