@@ -573,7 +573,7 @@ function TorteMe:UpdateTorteHUD(buffName, timeEnd)
 		else 
 			TorteMeUITorteBuffTime:SetText("EXPIRED")
 			TorteMeUITorteBuffTime:SetColor(255,0,0,255)
-			EVENT_MANAGER:UnRegisterForUpdate(TorteMe.name .. "_TorteTimer")
+			EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_TorteTimer")
 		end
 	end)
 end

@@ -71,9 +71,9 @@ function TorteMe:CaptureZoneInfo(loadType)
 			end
 
 		else
-			TorteMe:Log("Left Cyrodiil! - " .. TorteMe.displayName .. "disabled.")
 			TorteMe:Log("Non-Cyrodiil Zone Detected.", true, 5)
 			if TorteMe.sv.Zone.oldParentZoneId == 181 and TorteMe.sv.Zone.oldZoneId ~= 181 then
+				TorteMe:Log("Left Cyrodiil! - " .. TorteMe.displayName .. " disabled.")
 				TorteMe:Log(TorteMe.sv.Zone.oldZoneName .. " (Cyrodiil) -> " .. TorteMe.sv.Zone.zoneName, true, 20)
 			else 
 				TorteMe:Log(TorteMe.sv.Zone.oldZoneName .. " -> " .. TorteMe.sv.Zone.zoneName, true, 20)
