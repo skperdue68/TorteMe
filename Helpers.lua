@@ -162,15 +162,23 @@ end
 --[[
 ************************************************************************************
 
-Gets value of TorteMe.sv.Torte.autoConsume
-
-Return: TorteMe.sv.Torte.autoConsume bool
+Checks whether the player is in the Vengeance campaign in Cyrodiil.
 
 ************************************************************************************
 --]]
 
+function TorteMe:IsPlayerInVengeance()
+  if not TorteMe:IsPlayerInCyrodiil() then
+    return false
+  end
+
+  local campaignName = GetCampaignName(GetCurrentCampaignId())
+  return campaignName == "Vengeance"
+end
+
 function TorteMe:IsAutoConsumeEnabled()
-  return TorteMe.sv.Torte.autoConsume
+  -- Keep the saved preference so auto consume resumes in other campaigns.
+  return TorteMe.sv.Torte.autoConsume and not TorteMe:IsPlayerInVengeance()
 end
 
 --[[
@@ -431,6 +439,13 @@ end
 --]]
 
 function TorteMe:TorteBuffReminderLoop()
+
+  -- Tortes cannot be consumed in Vengeance, so stop retries and eating reminders.
+  if TorteMe:IsPlayerInVengeance() then
+    EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_torteBuffReminderLoop")
+    TorteMe.loopType = "none"
+    return
+  end
 
   local torteNotificationTime = (TorteMe.sv.Torte.torteNotificationTime * 60 * 1000)
 
