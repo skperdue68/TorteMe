@@ -1,30 +1,30 @@
 <GuiXml>
-	<Controls>
-		<TopLevelControl name="TorteMeUI" mouseEnabled="true" movable="true" clampedToScreen="true" resizeHandleSize="0">
-			<Dimensions x="180" y="45" />
-			<Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="24" offsetY="190" />
-			<OnMoveStop>
-				TorteMe.OnIndicatorMoveStop()
-			</OnMoveStop>
-			<OnResizeStop>
-				TorteMe.OnResizeStop()
-			</OnResizeStop>
-			<Controls>
-			<Backdrop name="$(parent)Bg" inherits="ZO_DefaultBackdrop" />
-				<Label name="$(parent)TorteBuff" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="LEFT" text="War-Torte:">
-					<Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
-				</Label>
-				<Label name="$(parent)TorteBuffTime" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="RIGHT">
-					<Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" />
-				</Label>
-				<Label name="$(parent)DelveBonus" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="LEFT" text="Delve Bonus:">
-					<Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT" />
-				</Label>
-				<Label name="$(parent)DelveBonusTime" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="RIGHT">
-					<Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" />
-				</Label>
+  <Controls>
+    <TopLevelControl name="TorteMeUI" mouseEnabled="true" movable="true" clampedToScreen="true" resizeHandleSize="0">
+      <Dimensions x="180" y="45" />
+      <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="24" offsetY="190" />
+      <OnMoveStop>
+        TorteMe.OnIndicatorMoveStop()
+      </OnMoveStop>
+      <OnResizeStop>
+        TorteMe.OnResizeStop()
+      </OnResizeStop>
+      <Controls>
+      <Backdrop name="$(parent)Bg" inherits="ZO_DefaultBackdrop" />
+        <Label name="$(parent)TorteBuff" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="LEFT" text="War-Torte:">
+          <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" />
+        </Label>
+        <Label name="$(parent)TorteBuffTime" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="RIGHT">
+          <Anchor point="TOPRIGHT" relativeTo="$(parent)" relativePoint="TOPRIGHT" />
+        </Label>
+        <Label name="$(parent)DelveBonus" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="LEFT" text="Delve Bonus:">
+          <Anchor point="BOTTOMLEFT" relativeTo="$(parent)" relativePoint="BOTTOMLEFT" />
+        </Label>
+        <Label name="$(parent)DelveBonusTime" width="100" height="25" font="ZoFontChat" inheritAlpha="true" color="3A92FF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAligment="RIGHT">
+          <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" />
+        </Label>
 
-			</Controls>
-		</TopLevelControl>
-	</Controls>
+      </Controls>
+    </TopLevelControl>
+  </Controls>
 </GuiXml>
