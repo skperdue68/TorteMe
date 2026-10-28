@@ -4,6 +4,11 @@ function TorteMe:EatTorte(torteSlot)
 
   EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_torteBuffReminderLoop")
 
+  -- Recheck at the point of use in case a timer survived a campaign change.
+  if TorteMe:IsPlayerInVengeance() then
+    return
+  end
+
   if torteSlot >= 0 then
 
     local amISecure = CallSecureProtected("UseItem")
