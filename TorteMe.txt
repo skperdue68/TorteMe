@@ -1,8 +1,8 @@
 ## Title: Torte Me
 ## Description: While in Cyrodiil will track Colovian War Torte's and Blessing of War Buffs to maximize your AP earning.   Will attempt to eat Tortes automatically if enabled.
 ## Author: @evainefaye
-## AddOnVersion: 0.1
-## APIVersion: 101039 101040 101041
+## AddOnVersion: 1.0
+## APIVersion: 101051
 ## SavedVariables: TorteMeVariables
 ## DependsOn: LibAddonMenu-2.0
 ##
