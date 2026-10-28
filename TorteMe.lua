@@ -2,7 +2,7 @@ TorteMe = TorteMe or {}
 
 TorteMe.name = "TorteMe"
 TorteMe.displayName = "Torte Me"
-TorteMe.version = "0.1"
+TorteMe.version = "1.0"
 TorteMe.initialLoad = true -- DO NOT CHANGE THIS VALUE
 
 
