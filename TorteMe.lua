@@ -119,7 +119,7 @@ function TorteMe.OnPlayerLoaded(_, playerZoned)
   EVENT_MANAGER:RegisterForEvent(TorteMe.name, EVENT_PLAYER_ACTIVATED, TorteMe.OnPlayerLoaded)
 
   if TorteMe.initialLoad then
-    TorteMe:Log("|r" .. TorteMe.displayName .. " by |cff0000@evainefaye |rloaded.")
+    TorteMe:Log("|cffff00" .. TorteMe.displayName .. " by |cff0000@evainefaye |cffff00loaded.")
     TorteMe:CreateSettingsWindow()
     if playerZoned then
       TorteMe:CaptureZoneInfo("login")
