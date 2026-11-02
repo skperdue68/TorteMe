@@ -4,8 +4,9 @@ function TorteMe:EatTorte(torteSlot)
 
   EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_torteBuffReminderLoop")
 
-  -- Recheck at the point of use in case a timer survived a campaign change.
-  if TorteMe:IsPlayerInVengeance() then
+  -- Recheck location, settings and the entry wait immediately before item use.
+  if not TorteMe:IsPlayerInCyrodiil() or not TorteMe.sv.Torte.enableTortes
+    or not TorteMe:IsAutoConsumeEnabled() or TorteMe:IsTorteConsumptionDelayed() then
     return
   end
 

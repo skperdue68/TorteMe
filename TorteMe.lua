@@ -142,6 +142,9 @@ function TorteMe.OnPlayerLoaded(_, playerZoned)
   end
 
 
+  -- Update the entry wait before setup or event callbacks can attempt consumption.
+  TorteMe:UpdateCyrodiilEntryDelay()
+
   --This portion handles initalizing or cancelling the reminder loop depending on if your in our of cyrodiil and the status of turning on or off the tracking.
   --You have just logged in (while inside), done a reloadui (while inside) or zoned into cyrodiil from outside of Cyrodiil.
   if (TorteMe:IsPlayerInCyrodiil() and TorteMe.initialLoad == true) or (TorteMe:IsPlayerInCyrodiil() and initialLoad == false and TorteMe.sv.Zone.oldParentZoneId ~= TorteMe.const.ZONEID_CYRODIIL)  then
