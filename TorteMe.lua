@@ -22,6 +22,16 @@ TorteMe.torteItems = {
   171329, --Alliance Skill Gain 100% Boost (Molten War Torte)
   171323  --Alliance Skill Gain 50% Boost (Colovian War Torte)
 }
+-- Indices into torteItems, matching the six Torte Priority dropdown choices.
+TorteMe.tortePriorityOrders = {
+  { 1, 2, 3 }, -- White-Gold, Molten, Colovian (strongest first)
+  { 1, 3, 2 }, -- White-Gold, Colovian, Molten
+  { 2, 1, 3 }, -- Molten, White-Gold, Colovian
+  { 2, 3, 1 }, -- Molten, Colovian, White-Gold
+  { 3, 1, 2 }, -- Colovian, White-Gold, Molten
+  { 3, 2, 1 }, -- Colovian, Molten, White-Gold
+}
+
 TorteMe.const = {
   ZONEID_CYRODIIL = 181,
 }
@@ -41,6 +51,7 @@ TorteMe.Defaults = {}
 TorteMe.Defaults.Torte = {}
 TorteMe.Defaults.Torte.enableTortes = true
 TorteMe.Defaults.Torte.autoConsume = true
+TorteMe.Defaults.Torte.tortePriority = 1
 TorteMe.Defaults.Torte.torteNotifyWhenBelow = 5
 TorteMe.Defaults.Torte.torteNotificationTime = 5
 
