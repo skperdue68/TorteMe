@@ -182,6 +182,40 @@ function TorteMe:IsAutoConsumeEnabled()
   return TorteMe.sv.Torte.autoConsume and not TorteMe:IsPlayerInVengeance()
 end
 
+function TorteMe:IsTorteConsumptionDelayed()
+  return self.cyrodiilAutoConsumeReadyAt ~= nil
+    and GetGameTimeMilliseconds() < self.cyrodiilAutoConsumeReadyAt
+end
+
+function TorteMe:UpdateCyrodiilEntryDelay()
+  local timerName = self.name .. "_cyrodiilEntryDelay"
+  if not self:IsPlayerInCyrodiil() then
+    self.wasInCyrodiil = false
+    self.cyrodiilAutoConsumeReadyAt = nil
+    EVENT_MANAGER:UnregisterForUpdate(timerName)
+    EVENT_MANAGER:UnregisterForUpdate(self.name .. "_torteBuffReminderLoop")
+    return
+  end
+
+  -- Login/reload inside starts a fresh wait; travel within Cyrodiil keeps it.
+  if self.wasInCyrodiil then return end
+  self.wasInCyrodiil = true
+  local readyAt = GetGameTimeMilliseconds() + 300000
+  self.cyrodiilAutoConsumeReadyAt = readyAt
+  EVENT_MANAGER:UnregisterForUpdate(self.name .. "_torteBuffReminderLoop")
+  EVENT_MANAGER:RegisterForUpdate(timerName, 300000, function()
+    -- A cancelled visit must not affect a later entry's timer.
+    if self.cyrodiilAutoConsumeReadyAt ~= readyAt then return end
+    EVENT_MANAGER:UnregisterForUpdate(timerName)
+    self.cyrodiilAutoConsumeReadyAt = nil
+    if self:IsPlayerInCyrodiil() and self.sv.Torte.enableTortes
+      and self:IsAutoConsumeEnabled() then
+      -- Recheck current buff and inventory instead of keeping an old item slot.
+      self:TorteBuffReminderLoop()
+    end
+  end)
+end
+
 --[[
 ************************************************************************************
                               DELVE BONUS EVENTS
@@ -440,6 +474,13 @@ end
 --]]
 
 function TorteMe:TorteBuffReminderLoop()
+
+  if TorteMe.sv.Torte.enableTortes and TorteMe.sv.Torte.autoConsume
+    and TorteMe:IsTorteConsumptionDelayed() then
+    EVENT_MANAGER:UnregisterForUpdate(TorteMe.name .. "_torteBuffReminderLoop")
+    TorteMe.loopType = "none"
+    return
+  end
 
   -- Tortes cannot be consumed in Vengeance, so stop retries and eating reminders.
   if TorteMe:IsPlayerInVengeance() then
