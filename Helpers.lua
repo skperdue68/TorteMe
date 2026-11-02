@@ -118,19 +118,20 @@ function TorteMe:DoesPlayerHaveTortes()
     torteSlot = -1
   }
 
-  for j = 1, #TorteMe.torteItems do
-    for slotId = 0, GetBagSize(BAG_BACKPACK) do
+  local priority = TorteMe.tortePriorityOrders[TorteMe.sv.Torte.tortePriority]
+    or TorteMe.tortePriorityOrders[1]
+  local bagSize = GetBagSize(BAG_BACKPACK)
+  for _, itemIndex in ipairs(priority) do
+    for slotId = 0, bagSize - 1 do
       local bagItemId = GetItemId(BAG_BACKPACK, slotId)
-      if bagItemId == TorteMe.torteItems[j] then
+      if bagItemId == TorteMe.torteItems[itemIndex] then
         torteInventoryInfo.torteFound = true
         torteInventoryInfo.torteSlot = slotId
-      end
-      if torteInventoryInfo.torteFound then
-        break
+        -- Stop both loops: lower-priority types must never overwrite this choice.
+        return torteInventoryInfo
       end
     end
   end
-  q = TorteMe:GetTotalTorteCount()
   return torteInventoryInfo
 end
 

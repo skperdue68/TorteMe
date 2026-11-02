@@ -62,6 +62,32 @@ function TorteMe.CreateSettingsWindow()
       reference = "TORTE_ME_TRACK_AUTO_CONSUME_TORTE"
     },
     {
+      type = "dropdown",
+      name = "Torte Priority",
+      tooltip = "Try war torte types from left to right, skipping any you do not have. White-Gold: 150%, Molten: 100%, Colovian: 50%. An active torte buff is not replaced.",
+      choices = {
+        "White-Gold > Molten > Colovian",
+        "White-Gold > Colovian > Molten",
+        "Molten > White-Gold > Colovian",
+        "Molten > Colovian > White-Gold",
+        "Colovian > White-Gold > Molten",
+        "Colovian > Molten > White-Gold"
+      },
+      choicesValues = { 1, 2, 3, 4, 5, 6 },
+      getFunc = function()
+        local priority = TorteMe.sv.Torte.tortePriority
+        return TorteMe.tortePriorityOrders[priority] and priority or 1
+      end,
+      setFunc = function(value)
+        TorteMe.sv.Torte.tortePriority = value
+        TorteMe:TorteBuffReminderLoop()
+      end,
+      default = TorteMe.Defaults.Torte.tortePriority,
+      width = "full",
+      disabled = function() return not TorteMe.sv.Torte.enableTortes end,
+      reference = "TORTE_ME_TORTE_PRIORITY"
+    },
+    {
       type = "slider",
       name = "Torte Buff Reminder Time",
       tooltip = "How often to notify when out of tortes or needing to eat one.",
